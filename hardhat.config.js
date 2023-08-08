@@ -3,15 +3,24 @@ require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.18",
+  solidity: {
+    version: "0.8.17",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
+  },
   networks: {
-    mumbai: {
-      url: 'https://rpc-mumbai.maticvigil.com',
-      accounts: [process.env.PRIVATE_KEY],
-    },
+    hardhat: {},
     goerli: {
-      url: 'https://ethereum-goerli.publicnode.com',
+      url: process.env.GOERLIs,
       accounts: [process.env.PRIVATE_KEY],
     },
-  }
+    mumbai: {
+      url: process.env.P_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+  },
 };
